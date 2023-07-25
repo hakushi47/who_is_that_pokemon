@@ -10,7 +10,7 @@ class CreateQuizzes < ActiveRecord::Migration[7.0]
       t.text :hint2
       t.text :hint3
       t.text :description
-      t.boolean :is_get
+      t.boolean :is_get, null: false, default: false
 
       t.timestamps
     end

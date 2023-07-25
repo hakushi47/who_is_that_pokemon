@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_23_122905) do
     t.text "hint2"
     t.text "hint3"
     t.text "description"
-    t.boolean "is_get"
+    t.boolean "is_get", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
