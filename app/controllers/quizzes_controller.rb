@@ -1,44 +1,34 @@
 class QuizzesController < ApplicationController
-
   def index
   end
 
   def new
-    
     @num = rand (1..52)
     @pokemon =  Quiz.find(@num)
-    # @pokemon = Pokemon.where(name: 'params[:search]').or(Pokemon.where(number: params[:search]))
-    #↑ 送られてきたパラメータ(#{params[:search]}) を用いてDBより名前か番号で検索
-    
-    
-
     if @pokemon == nil
       redirect_to pokes_new_path, notice: "エラー！" 
-      # また、リクエストが失敗した時の処理も追加します。
     end
-    # ここまで追加
-
   end
 
   def update
-    render plain: pokemon_params[:answer].inspect
-    p " #{ @pokemon.name } ！！！！ "
-    if @pokemon == Pokemon.where(name: 'params[:answer]').or(Pokemon.where(number: params[:ansewr]))
-    #↑ 送られてきたパラメータ(#{params[:search]}) を用いてDBより名前か番号で検索
-      @pokemon.is_get = true
+    @pokemon =  Quiz.find(params[:true_num])
+    @answer_pokemon_name = Quiz.find_by(name: "#{params[:answer]}")
+    @answer_pokemon = Quiz.find_by(number: params[:answer])
+    render plain: params[:answer].inspect
+    #↑ inspectメソッドは送られたパラメータをサーバーログに表示させるメソッド
+    p " 正解のポケモンは #{ @pokemon.name } ！！！！ "
+ 
+    if @pokemon == @answer_pokemon || @pokemon == @answer_pokemon_name
+    #↑ 送られてきたパラメータ(#{params[:answer]}) を用いてDBより名前か番号で検索
+      @pokemon.update(is_get: true)
+      p " #{ @pokemon.name } 正解"
       if @pokemon.save
         p " #{ @pokemon.name } をゲット！！！！ "
-        redirect_to quiz_index_path, notice: "「#{@pokemon.name}」をゲットしました。"
       else
-        render pokes_new_path
+        p "  #{ @pokemon.name } ゲットならず"
       end
+    else
+      p " ちがう!！ #{ @pokemon.name }！！ "
     end
   end
-
-  private
-    def pokemon_params
-      params.require(:pokemon).permit(:name, :number)
-    end
-
-
-end
+ end

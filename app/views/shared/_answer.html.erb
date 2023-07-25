@@ -1,4 +1,6 @@
-<%= form_with do |form| %>
+<%= form_with url: "quiz_path", method: :patch do |form| %>
   <%= form.text_field :answer %>
+<!--  <%= form.text_field :true_num, value: @num %> -->
+<%= form.hidden_field :true_num, value: @num %>
   <%= form.submit %>
 <% end %>
