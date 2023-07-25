@@ -4,22 +4,22 @@ one:
   name: MyString
   number: 1
   types: MyString
-  weight: MyString
-  height: MyString
+  description: MyText
   hint1: MyText
   hint2: MyText
   hint3: MyText
-  description: MyText
   is_get: false
+  weight: MyString
+  height: MyString
 
 two:
   name: MyString
   number: 1
   types: MyString
-  weight: MyString
-  height: MyString
+  description: MyText
   hint1: MyText
   hint2: MyText
   hint3: MyText
-  description: MyText
   is_get: false
+  weight: MyString
+  height: MyString

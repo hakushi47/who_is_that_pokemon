@@ -1,2 +1,19 @@
-<h1>Quizzes#index</h1>
-<p>Find me in app/views/quizzes/index.html.erb</p>
+<div>
+
+  <div class="title">正解したポケモン</div>
+  <% if @pokemon.is_get == true %>
+    <% @pokes.each do |poke| %>
+      <div style="display: inline-block;">
+        図鑑No. <%= poke.order %>
+        名前: <%= poke.name %>
+        <div>
+          <%= image_tag(poke.image_url, size: "200") %>
+        </div>
+        <%= button_to "逃がす", poke_path(poke.id), method: :delete, class:"button is-rounded"%>
+        
+
+        </div>
+    <% end %>
+  <% end %>
+  <%= link_to '次の問題へ', quiz_new_path %>
+</div>
