@@ -7,9 +7,9 @@ class QuizzesController < ApplicationController
     @num = rand (1..52)
     @pokemon =  Quiz.find(@num)
 
-    if @pokemon == nil
-      redirect_to pokes_new_path, notice: "エラー！" 
-    end
+    # if @pokemon == nil
+    #   redirect_to pokes_new_path, notice: "エラー！" 
+    # end
      
   end
 
@@ -30,6 +30,7 @@ class QuizzesController < ApplicationController
           # TODO: newページに飛んで正解と表示する
         else
           p "  #{ @pokemon.name } ゲットならず"
+          # TODO: newページに戻ってフォームの値をリセットする
         end
       else
         p " ちがう!！ #{ @pokemon.name }！！ "
